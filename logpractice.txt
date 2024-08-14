@@ -1,0 +1,93 @@
+Certainly! Below are example scripts and commands that can be used to accomplish each task in the assignment. These examples assume the log file is named `apache_logs.txt`.
+
+### 1. **Count the Total Number of Requests:**
+
+**Command:**
+```bash
+wc -l apache_logs.txt
+```
+This command counts the number of lines in the log file, which corresponds to the total number of requests.
+
+### 2. **Identify Unique Visitors:**
+
+**Script:**
+```bash
+#!/bin/bash
+awk '{print $1}' apache_logs.txt | sort | uniq | wc -l
+```
+This script extracts the first field (IP address), sorts the IPs, removes duplicates, and then counts the unique IP addresses.
+
+### 3. **Top 10 IP Addresses by Request Volume:**
+
+**Script:**
+```bash
+#!/bin/bash
+awk '{print $1}' apache_logs.txt | sort | uniq -c | sort -nr | head -10
+```
+This script counts the number of requests per IP address, sorts them in descending order, and shows the top 10.
+
+### 4. **Analyze HTTP Status Codes:**
+
+**Script:**
+```bash
+#!/bin/bash
+awk '{print $9}' apache_logs.txt | sort | uniq -c | sort -nr
+```
+This script extracts the HTTP status code (typically the 9th field), counts each unique status code, and sorts them.
+
+### 5. **Find and Analyze 404 Errors:**
+
+**Script:**
+```bash
+#!/bin/bash
+grep " 404 " apache_logs.txt | awk '{print $7}' | sort | uniq -c | sort -nr
+```
+This script filters out requests that resulted in a 404 error and counts the occurrences of each URL that returned a 404.
+
+### 6. **Determine Traffic Patterns by Hour:**
+
+**Script:**
+```bash
+#!/bin/bash
+awk '{print substr($4, 14, 2)}' apache_logs.txt | sort | uniq -c | sort -nr
+```
+This script extracts the hour from the timestamp (the 4th field, with hours starting at position 14), counts requests per hour, and sorts them.
+
+### 7. **Identify Top Requested URLs:**
+
+**Script:**
+```bash
+#!/bin/bash
+awk '{print $7}' apache_logs.txt | sort | uniq -c | sort -nr | head -10
+```
+This script counts the occurrences of each requested URL and lists the top 10 most frequently requested.
+
+### 8. **Investigate Suspicious Activity:**
+
+**Script:**
+```bash
+#!/bin/bash
+awk '{print $1}' apache_logs.txt | sort | uniq -c | sort -nr | awk '$1 > 100 {print $0}'
+```
+This script finds IP addresses that made more than 100 requests, which could indicate suspicious activity.
+
+### 9. **Calculate Total Data Transferred:**
+
+**Script:**
+```bash
+#!/bin/bash
+awk '{sum += $10} END {print sum}' apache_logs.txt
+```
+This script sums up the number of bytes transferred (typically the 10th field) to get the total data transferred.
+
+### 10. **Summarize Your Findings:**
+
+For the report, students should compile the outputs from these scripts, interpret the results, and write a brief analysis.
+
+### Example Output Interpretation:
+
+- **Total Requests:** `wc -l apache_logs.txt` might output `5000`, indicating there were 5000 requests in total.
+- **Unique Visitors:** The command to find unique IPs might output `123`, meaning there were 123 unique visitors.
+- **Top IPs:** The top IP addresses might show one IP making 3000 requests, which could indicate a bot or a potential attack.
+
+These scripts should provide students with a solid foundation to analyze and understand the Apache log data. Encourage them to modify and extend these scripts based on the specific needs of their analysis.
