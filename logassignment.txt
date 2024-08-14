@@ -1,0 +1,26 @@
+ou are a junior DevOps engineer at a mid-sized e-commerce company. The company has been experiencing intermittent slowdowns on its web servers, 
+and the senior engineers suspect it might be due to an increase in traffic or potential malicious activity. 
+You have been provided with the Apache access log file apache_logs.txt and have been tasked with analyzing the logs to find patterns, identify potential issues, 
+and report your findings.
+
+Tasks:
+Count the Total Number of Requests:
+
+Write a Bash script to count the total number of HTTP requests in the log file.
+Question: What is the total number of requests made to the server?
+Identify Unique Visitors:
+
+Write a script to extract and count the number of unique IP addresses that accessed the server.
+Question: How many unique visitors (based on IP addresses) accessed the server?
+Top 10 IP Addresses by Request Volume:
+
+Write a script to identify the top 10 IP addresses that made the most requests.
+Question: Which IP addresses are responsible for the most traffic, and how many requests did each make?
+Analyze HTTP Status Codes:
+
+Write a script to count the occurrences of each HTTP status code (e.g., 200, 404, 500).
+Question: How many requests resulted in each type of HTTP status code?
+Find and Analyze 404 Errors:
+
+Write a script to filter and count all requests that resulted in a 404 error.
+Question: How many 404 errors occurred, and which URLs were most frequently requested but not found?
